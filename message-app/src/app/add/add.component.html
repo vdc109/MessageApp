@@ -1,0 +1,169 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        display: flex;
+        /* justify-content: center;
+        align-items: center; */
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    hr.verticle2 {
+        height: 100%;
+        width: 0;
+        border: 0.5px solid;
+        position: absolute;
+        left: 3.75%;
+    }
+
+    .navBar {
+        width: 3.75%;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        display: flex;
+    }
+
+    .rightSide {
+        height: 100%;
+        position: absolute;
+        width: 96.5%;
+        right: 0px;
+    }
+
+    .btn.btn1 {
+        top: 2%;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        padding-bottom: 12.5%;
+        padding-top: 17.5%;
+        background-color: #D5E7FB;
+        height: 5.5%;
+    }
+
+    .fa-solid {
+        color: #136DBE;
+    }
+
+    .btn.btn2 {
+        top: 9.5%;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        padding-bottom: 12.5%;
+        padding-top: 17.5%;
+        background-color: #D5E7FB;
+        height: 5.5%;
+    }
+
+    .btn.btn3 {
+        top: 17%;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        padding-bottom: 15%;
+        padding-top: 15%;
+        background-color: #D5E7FB;
+        height: 5.5%;
+    }
+
+    .btn.btn4 {
+        bottom: 2%;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        padding-bottom: 15%;
+        padding-top: 15%;
+        background-color: #D5E7FB;
+        height: 5.5%;
+    }
+
+    .container {
+        margin-top: 1%;
+        margin-left: 2%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .bar_container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .form {
+        width: 65%;
+        padding: 5px 10px;
+    }
+    
+    .btn.search {
+        margin-left: 5px;
+        background-color: #136DBE;
+        width: 5%;
+        height: 100%;
+    }
+    
+    .fa-solid.fa-magnifying-glass {
+        color: white;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .ans_container {
+        margin-top: 20px;
+        background-color: #D5E7FB;
+        display: flex;
+        width: 85%;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .btn.btn-primary.send {
+        margin-left: 75%;
+        width: 15%;
+    }
+
+    .btn.btn-success.sent {
+        margin-left: 75%;
+        width: 15%;
+    }
+</style>
+
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <div class="navBar">
+        <button class="btn btn1 rounded-circle" (click)="direct_chat($event)"><i class="fa-solid fa-message"></i></button>
+        <button class="btn btn2 rounded-circle" (click)="direct_request($event)"><i class="fa-solid fa-address-book"></i></button>
+        <button class="btn btn3 rounded-circle"><i class="fa-solid fa-plus"></i></button>
+        <button class="btn btn4 rounded-circle" (click)="direct_setting($event)"><i class="fa-solid fa-gear"></i></button>
+    </div>
+    <hr class="verticle2">
+    <div class="rightSide">
+        <div class="container">
+            <h2>Add friend</h2>
+            <div class="bar_container">
+                <form method="post" #userForm="ngForm" class="input">
+                    <input type="text" class="form" placeholder="Search" id="search" (keyup)="press($event)">
+                    <button class="btn search"><i class="fa-solid fa-magnifying-glass" (click)="search($event)"></i></button>
+                </form>
+            </div>
+
+            <div class="ans_container" *ngIf="name">
+                {{ name }}
+                <button class="btn btn-primary send" id="sendbutton" *ngIf="button" (click)="send($event)">{{ button }}</button>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,197 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        display: flex;
+        /* justify-content: center;
+        align-items: center; */
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    .leftSide {
+        height: 100%;
+        position: absolute;
+        width: 30%;
+        left: 0px;
+    }
+    
+    .leftSide .navBar {
+        width: 12.5%;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        display: flex;
+    }
+
+    .leftSide .restBar {
+        width: 87.5%;
+        position: absolute;
+        right: 0;
+        height: 100%;
+    }
+
+    .rightSide {
+        height: 100%;
+        position: absolute;
+        width: 70%;
+        right: 0px;
+    }
+
+    hr.verticle2 {
+        height: 100%;
+        width: 0;
+        border: 0.5px solid;
+        position: absolute;
+        left: 12.5%;
+    }
+
+    hr.verticle {
+        height: 100%;
+        width: 0;
+        border: 0.5px solid;
+        position: absolute;
+        left: 30%;
+    }
+
+    .btn.btn1 {
+        top: 2%;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        padding-bottom: 12.5%;
+        padding-top: 17.5%;
+        background-color: #D5E7FB;
+        height: 5.5%;
+    }
+
+    .fa-solid {
+        color: #136DBE;
+    }
+
+    .btn.btn2 {
+        top: 9.5%;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        padding-bottom: 12.5%;
+        padding-top: 17.5%;
+        background-color: #D5E7FB;
+        height: 5.5%;
+    }
+
+    .btn.btn3 {
+        top: 17%;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        padding-bottom: 15%;
+        padding-top: 15%;
+        background-color: #D5E7FB;
+        height: 5.5%;
+    }
+
+    .btn.btn4 {
+        bottom: 2%;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        padding-bottom: 15%;
+        padding-top: 15%;
+        background-color: #D5E7FB;
+        height: 5.5%;
+    }
+
+    .container {
+        padding: 20px;
+        border-left: 0.05px solid;
+        border-bottom: 0.05px solid;
+    }
+
+    .chatBar {
+        padding: 15px;
+        border-bottom: 0.05px solid;
+    }
+
+    /* .horizontal {
+        width: 100%;
+        height: 0;
+        border: 0.5px solid;
+        margin-top: 50px;
+    } */
+
+    .chatInput {
+        position: absolute;
+        padding: 10px;
+        bottom: 0;
+        border: 0.05px solid;
+        width: 100%;
+        display: flex;
+        outline: none;
+    }
+
+    .chatInput::content {
+        outline: none;
+    }
+
+    .chatContainer {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    .field {
+        width: 95%;
+        background-color: #EAEBEC;
+        border: none;
+        height: 25px;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .btn.btn-primary.send {
+        margin-left: 2%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+</style>
+
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <div class="leftSide">
+        <div class="navBar">
+            <button class="btn btn1 rounded-circle"><i class="fa-solid fa-message"></i></button>
+            <button class="btn btn2 rounded-circle" (click)="direct_request($event)"><i class="fa-solid fa-address-book"></i></button>
+            <button class="btn btn3 rounded-circle" (click)="direct_add($event)"><i class="fa-solid fa-plus"></i></button>
+            <button class="btn btn4 rounded-circle" (click)="direct_setting($event)"><i class="fa-solid fa-gear"></i></button>
+        </div>
+        <hr class="verticle2">
+        <div class="restBar">
+            <div class="container" *ngFor="let data of array; let i = index" id="chat{{i}}" (click)="chat($event)">
+                {{data}}
+            </div>
+        </div>
+    </div>
+    <hr class="verticle">
+    <div class="rightSide">
+        <div class="chatBar" *ngIf="button"><b>
+            {{button}}
+        </b></div>
+        <!-- <hr class="horizontal" *ngIf="button"> -->
+        <div class="chatContainer">
+            <div class="chatContent" *ngFor="let messages of showm; let i = index">
+                <b>{{show1[i]}}</b>: {{messages}}
+            </div>
+        </div>
+        
+        <div class="chatInput" *ngIf="button">
+            <input type="text" class="field" id="text" (keyup)="press($event)">
+            <button class="btn btn-primary send" (click)="send($event)">Send</button>
+        </div>
+    </div>
+</body>
